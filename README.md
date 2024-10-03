@@ -1,22 +1,21 @@
-# Nombre del juego (<- borrar y completar)
+PdeP Invaders
 
 ## Equipo de desarrollo
 
-- Alguien
-- Persona
-- etc.
+- Manuel Cejas
+- Geronimo Basso Arroyo
+- Francisco Gonzalez Miel
+- Mirko Peschel
 
 ## Capturas
 
 (agregar)
 
 ## Reglas de Juego / Instrucciones
-
-(Escribirlas)
+El juego se basara en el famoso juego Space Invaders en el cual caeran de la parte superior de la pantalla varios tipos de naves. En un principo las naves sera pasivas y con poca vida, con el paso del tiempo la dificultad ira aumentando y cuando se llegue a una cierta cantidad de kills aparecera un ¨Jefe¨.
 
 
 ## Otros
 
-- Curso/Facultad
-- Versión de wollok
-- Una vez terminado, no tenemos problemas en que el repositorio sea público / queremos manternerlo privado
+- K2033 UTN
+- Versión de wollok: 0.2.6
