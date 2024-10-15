@@ -1,0 +1,40 @@
+import wollok.game.*
+import objetos.*
+
+
+program inicio {
+    game.width(20)
+    game.height(10)
+    game.cellSize(64)
+	game.title("PdeP Invaders")
+	game.boardGround("space.png")
+
+    game.addVisual(nave)
+	game.addVisual(tiro)
+	game.addVisual(alien)
+
+	game.addVisualCharacter(nave)  //Para que se pueda mover con las flechas
+    
+    game.whenCollideDo(tiro, { alien => alien.sacarVida(25)})
+
+    keyboard.left().onPressDo({ nave.moverseIzquierda() })
+	keyboard.right().onPressDo({ nave.moverseDerecha() })
+    keyboard.space().onPressDo({ nave.disparar()})
+
+    game.start()
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
