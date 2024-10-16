@@ -1,27 +1,16 @@
 import wollok.game.*
 
 object nave {
-  var property image = "nave.png"
+  method image() = "navee.png"
   var property position = game.center().down(5)
   method posicion() = position
-
-  method moverseIzquierda() {
-		position = if ((position.x() - 1) < 0) 
-		           		position.left(1) else
-		           	 position
-	}
-	
-	method moverseDerecha() {
-		position = if ((position.x() + 1) > 19)
-		           		position.right(1) else position           	
-	}
-
 
 
 
 
   var vida = 100
   method disparar() {
+    const disparo = new Tiro()
     
   }
   
@@ -36,7 +25,7 @@ object nave {
 
 object alien {
 
-var property image = "alienVerde.png"
+method image() = "alienVerde.png"
 
 method position() = game.center().right(5).up(5)
 
@@ -56,8 +45,8 @@ method position() = game.center().right(5).up(5)
     
 }
 
-object tiro {
-    var property image = "bala.png"
+class Tiro {
+    method image() = "bala.png"
     method position() = nave.posicion()
     method desaparecer() {
       
