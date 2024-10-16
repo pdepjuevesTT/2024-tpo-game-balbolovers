@@ -1,7 +1,7 @@
 import wollok.game.*
 
 object nave {
-  method image() = "navee.png"
+  method image() = "nave.png"
   var property position = game.center().down(5)
   method posicion() = position
 
@@ -23,7 +23,7 @@ object nave {
     }
 }
 
-object alien {
+class Alien {
 
 method image() = "alienVerde.png"
 
@@ -47,7 +47,11 @@ method position() = game.center().right(5).up(5)
 
 class Tiro {
     method image() = "bala.png"
-    method position() = nave.posicion()
+    var property position = nave.posicion()
+
+    method moverse(){
+        position = position.up(1)
+    }
     method desaparecer() {
       
     }

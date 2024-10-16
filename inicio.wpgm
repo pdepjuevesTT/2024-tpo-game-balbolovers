@@ -9,13 +9,14 @@ program inicio {
 	game.title("PdeP Invaders")
 	game.boardGround("space.png")
 
-    game.start()
+    
 
     game.addVisualCharacter(nave)
-	game.addVisual(alien)
+	game.addVisual(new Alien())
 
 	keyboard.space().onPressDo({game.addVisual(new Tiro())})
 
+    game.start()
 
 }
 
