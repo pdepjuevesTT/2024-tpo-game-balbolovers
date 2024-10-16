@@ -1,0 +1,36 @@
+import wollok.game.*
+import objetos.*
+
+
+program inicio {
+    game.width(50)
+    game.height(25)
+    game.cellSize(50)
+	game.title("PdeP Invaders")
+	game.boardGround("space.png")
+
+    
+
+    game.addVisualCharacter(nave)
+	game.addVisual(new Alien())
+
+	keyboard.space().onPressDo({game.addVisual(new Tiro())})
+
+    game.start()
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
