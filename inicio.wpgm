@@ -14,7 +14,7 @@ program inicio {
     game.addVisualCharacter(nave)
 	game.addVisual(new Alien())
 
-	keyboard.space().onPressDo({game.addVisual(new Tiro())})
+	keyboard.space().onPressDo({nave.disparar()})
 
     game.start()
 
