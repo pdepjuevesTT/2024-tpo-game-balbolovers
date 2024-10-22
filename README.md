@@ -12,8 +12,7 @@ PdeP Invaders
 (agregar)
 
 ## Reglas de Juego / Instrucciones
-El juego se basara en el famoso juego Space Invaders en el cual caeran de la parte superior de la pantalla varios tipos de naves. En un principo las naves sera pasivas y con poca vida, con el paso del tiempo la dificultad ira aumentando y cuando se llegue a una cierta cantidad de kills aparecera un ¨Jefe¨.
-
+El juego se basa en el famoso Space Invaders. Éste contiene el personaje que nosotros controlamos, que es una nave que esta en la parte inferior de la pantalla la cual podremos mover hacia los costados con el objetivo de esquivar y disparar a los aliens, las entidades enemigas a las que tendremos que eliminar para obtener puntos y PowerUps. Estos cuentan con vida y cada uno otorga una distinta cantidad de puntos al ser eliminado,   con el avanzar del juego tambien mejoraran sus habilidades pudiendo disparar, aumentar su vida, entre otras cosas, esto varia segun el tipo de alien. Cuando se llegue a una cierta cantidad de puntos (según los aliens derrotados) aparecera un jefe, el cual tambien deberemos derrotar para continuar sumando puntos. El juego termia cuando nuestra nave se quede sin vida (perdemos) o cuando llegamos a los 3000 puntos (ganamos), guardandose los jugadores que ganaron y los que perdieron en una Tabla Podio.
 
 ## Otros
 
