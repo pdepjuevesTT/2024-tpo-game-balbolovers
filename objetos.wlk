@@ -1,8 +1,8 @@
 import wollok.game.*
 
 object nave {
-  method image() = "nave.png"
-  var property position = game.center().down(5)
+  method image() = "naveee.png"
+  var property position = game.center().down(4)
   method posicion() = position
   var poder = 50
 
@@ -29,9 +29,9 @@ object nave {
 
 class Alien {
 
-    method image() = "alienVerde.png"
+    method image() = "alienRojoo.png"
 
-    var position = game.center().right(5).up(5)
+    var property position = game.center().right(5).up(5)
 
     var vida = 50
     const danio = 20
