@@ -2,7 +2,7 @@ import wollok.game.*
 
 object nave {
   method image() = "naveee.png"
-  var property position = game.center().down(4)
+  var property position = game.center().down(3)
   method posicion() = position
   var poder = 50
 
@@ -11,7 +11,7 @@ object nave {
 
   var vida = 100
   method disparar() {
-    const nuevoTiro = new Tiro(danio = poder)
+    const nuevoTiro = new Tiro(danio = poder, position = position.up(2))
     game.addVisual(nuevoTiro)
     nuevoTiro.confColisiones()
     nuevoTiro.moverse()
@@ -27,11 +27,18 @@ object nave {
     }
 }
 
+
+/*object jefeAlien {
+  const hitbox = lista 
+
+
+}
+*/
 class Alien {
 
     method image() = "alienRojoo.png"
 
-    var property position = game.center().right(5).up(5)
+    var property position = game.center().right(12).up(10)
 
     var vida = 50
     const danio = 20
@@ -45,8 +52,8 @@ class Alien {
 
 
     method confColisiones(){
-      game.onCollideDo(self, {nave => nave.perderVida(danio)})
-    }
+      game.onCollideDo(self, {nave => nave.perderVida(danio) self.morir() })
+    } 
 
    method abajo(){
         position = position.down(1)
@@ -64,7 +71,7 @@ class Alien {
 
 class Tiro {
     method image() = "bala.png"
-    var property position = nave.posicion()
+    var property position 
     var danio = 50
 
     method subir(){
@@ -79,5 +86,7 @@ class Tiro {
     method desaparecer() {
       game.removeVisual(self)
     }
+
+    method perderVida(n){}
 
 }

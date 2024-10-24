@@ -3,9 +3,9 @@ import objetos.*
 
 
 program inicio {
-    game.width(115)
-    game.height(50)
-    game.cellSize(50)
+    game.width(90) 
+    game.height(44)
+    game.cellSize(60)
 	game.title("PdeP Invaders")
 	game.boardGround("space.png")
 
