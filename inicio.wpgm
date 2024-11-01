@@ -1,16 +1,16 @@
 import wollok.game.*
 import objetos.*
+import colores.*
 
 
 program inicio {
-    game.width(90) 
-    game.height(44)
+    game.width(25) 
+    game.height(25)
     game.cellSize(60)
 	game.title("PdeP Invaders")
 	game.boardGround("space.png")
-
+    game.addVisual(puntaje)
     
-
     game.addVisualCharacter(nave)
 	game.addVisual(new Alien())
 
