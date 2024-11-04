@@ -12,6 +12,7 @@ program inicio {
     game.addVisual(puntaje)
     
     game.addVisualCharacter(nave)
+
 	
     game.onTick(2000, "spawnVerde", { spawn.alienVerde() })
    
