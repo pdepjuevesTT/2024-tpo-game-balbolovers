@@ -15,6 +15,7 @@ program inicio {
 	const alien = new Alien()
     game.addVisual(alien)
     alien.moverse()
+    game.addVisual(vidaNave)
     //game.onTick(2000, "movimiento", { Alien.movete() })
 
 	keyboard.space().onPressDo({nave.disparar()})
