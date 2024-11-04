@@ -12,7 +12,10 @@ program inicio {
     game.addVisual(puntaje)
     
     game.addVisualCharacter(nave)
-	game.addVisual(new Alien())
+	const alien = new Alien()
+    game.addVisual(alien)
+    alien.moverse()
+    //game.onTick(2000, "movimiento", { Alien.movete() })
 
 	keyboard.space().onPressDo({nave.disparar()})
 

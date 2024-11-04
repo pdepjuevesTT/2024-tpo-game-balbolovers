@@ -35,12 +35,26 @@ object nave {
 }
 */
 
+object posicionAleatoria {
+  method calcular() = game.at(
+    0.randomUpTo(game.width()).truncate(0), 23
+  )
+}
+
+
+/*
+object posicionAleatoria {
+method calcular() {
+      const x = 0.randomUpTo(game.width()).truncate(0)
+    position = game.at(0.randomUpTo(game.width()).truncate(0), 23)
+  }
+}
+*/
 class Alien {
   
     method image() = "alienRojo60.png"
-
-    var property position = game.center().right(12).up(10)
-    
+    var property position = posicionAleatoria.calcular()
+    var contadorMovimientos = 0
     var vida = 50
     const danio = 20
     method perderVida(n) {
@@ -51,23 +65,36 @@ class Alien {
     puntaje.cambiarPuntos(50) // Suma puntos basados en la vida del alien
     game.removeVisual(self)
 }
+  
+    //method movete() {
+    //const x = 0.randomUpTo(game.width()).truncate(0)
+    //const y = 0.randomUpTo(game.height()).truncate(0)
+    //position = game.at(x,y)
+  //}
 
 
     method confColisiones(){
       game.onCollideDo(self, {nave => nave.perderVida(danio) self.morir() })
     } 
 
-   method abajo(){
+   
+   
+  method bajar(){
         position = position.down(1)
+        contadorMovimientos += 1 
+        const x = 0.randomUpTo(game.width()).truncate(0)
+        const y = 0.randomUpTo(game.width()).truncate(0)
+        position = game.at(x,y)
+        if (contadorMovimientos >= 22)  
+            self.desaparecer()
     }
-    method derecha(){
-        position = position.right(1)
-    }
-    method izquierda(){
-        position = position.left(1)
-    }
-    method movimiento() {
 
+    method moverse(){
+      game.onTick(300, "movimientoAlien", { self.bajar() })
+    }
+
+    method desaparecer() {
+      game.removeVisual(self)
     }
 }
 
