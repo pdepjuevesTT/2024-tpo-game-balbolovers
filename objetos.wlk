@@ -81,21 +81,25 @@ class Alien {
    
   method bajar(){
         position = position.down(1)
-        contadorMovimientos += 1 
-        const x = 0.randomUpTo(game.width()).truncate(0)
-        const y = 0.randomUpTo(game.width()).truncate(0)
-        position = game.at(x,y)
         if (contadorMovimientos >= 22)  
-            self.desaparecer()
+            self.morir()
     }
 
     method moverse(){
       game.onTick(300, "movimientoAlien", { self.bajar() })
     }
 
-    method desaparecer() {
-      game.removeVisual(self)
-    }
+  
+}
+
+object spawn{
+  method alienVerde(){
+    const nuevoAlien = new Alien()
+    game.addVisual(nuevoAlien)
+    nuevoAlien.confColisiones()
+    nuevoAlien.moverse()
+    if (puntaje.puntos() > 200) game.removeTickEvent("spawnVerde")
+  }
 }
 
 class Tiro {
@@ -126,7 +130,7 @@ class Tiro {
 }
 
 object puntaje { 
-var puntos = 0
+var property puntos = 0
 method cambiarPuntos(n){puntos += n}
 method text() = "PUNTOS: " + puntos
 method position() = game.center().right(11).up(12)
