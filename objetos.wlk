@@ -1,5 +1,7 @@
 import wollok.game.*
 import colores.*
+import pantallas.*
+import eventos.*
 object nave {
   method image() = "nave60v2.png"
   var property position = game.center()
@@ -22,6 +24,7 @@ object nave {
     }
     method morir() {
       game.removeVisual(self)
+      eventos.perder()
       //finalizarJuego()
     }
 }
@@ -49,6 +52,7 @@ method calcular() {
   }
 }
 */
+
 class Alien {
   
     method image() = "alienRojo60.png"
@@ -65,7 +69,7 @@ class Alien {
     method morir() {
     puntaje.cambiarPuntos(50) // Suma puntos basados en la vida del alien
     game.removeVisual(self)
-    //game.removeTickEvent("movimientoAlien")
+    if(puntaje.puntos() == 300) eventos.ganar()
     }
   
     method confColisiones(){
@@ -95,17 +99,6 @@ class Alien {
 
   
 }
-
-object spawn{
-  method alienVerde(){
-    const nuevoAlien = new Alien()
-    game.addVisual(nuevoAlien)
-    nuevoAlien.confColisiones()
-    nuevoAlien.moverse()
-    if (puntaje.puntos() > 200) game.removeTickEvent("spawnVerde")
-  }
-}
-
 
 
 class Tiro {
