@@ -2,26 +2,61 @@ import wollok.game.*
 import objetos.*
 import colores.*
 
+object pantallaInicio {
+  method mostrar() {
+    game.boardGround("gameOver.png")
+    game.addVisual(tituloParpadeante)
+    game.onTick(500, "parpadeoTitulo", { tituloParpadeante.parpadear() })
+  }
+}
+
+object tituloParpadeante {
+  var visible = true
+  method text() = "PRESIONE 'W' PARA COMENZAR"
+  method position() = game.center().down(5)
+  method textColor() = paleta.blanco()
+
+  method parpadear() {
+    if (visible) game.removeVisual(self)
+    else game.addVisual(self)
+    visible = !visible
+  }
+}
+
+/*
+REEMPLAZAR POR ESTO??   
+program inicio {
+  pantallaInicio.mostrar()
+  keyboard.w().onPressDo({ iniciarJuego() })
+
+  method iniciarJuego() {
+    game.removeVisual(pantallaInicio)
+    game.removeVisual(tituloParpadeante)
+    game.removeTickEvent("parpadeoTexto")
+*/
 
 program inicio {
+    
     game.width(25) 
     game.height(25)
     game.cellSize(60)
 	game.title("PdeP Invaders")
 	game.boardGround("space.png")
     game.addVisual(puntaje)
-    
+    game.addVisual(vidaNave)
     game.addVisualCharacter(nave)
 
 	
     game.onTick(2000, "spawnVerde", { spawn.alienVerde() })
    
-
 	keyboard.space().onPressDo({nave.disparar()})
 
     game.start()
 
+
 }
+
+
 
 
 

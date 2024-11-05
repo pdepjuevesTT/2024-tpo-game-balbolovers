@@ -22,6 +22,7 @@ object nave {
     }
     method morir() {
       game.removeVisual(self)
+      //finalizarJuego()
     }
 }
 
@@ -64,6 +65,7 @@ class Alien {
     method morir() {
     puntaje.cambiarPuntos(50) // Suma puntos basados en la vida del alien
     game.removeVisual(self)
+    //game.removeTickEvent("movimientoAlien")
     }
   
     method confColisiones(){
@@ -72,18 +74,19 @@ class Alien {
 
     method bajar(){
         position = position.down(1)
-
-        if (contadorMovimientos >= 22)  
-            self.morir()
-
         contadorMovimientos += 1 
         //const x = 0.randomUpTo(game.width()).truncate(0)
-        //const y = 0.randomUpTo(game.width()).truncate(0)
+        //const y = y.randomUpTo(y).truncate(0)
+        //const x = x-1.randomUpTo(x+1).truncate(0)
         //position = game.at(x,y)
-        if (contadorMovimientos >= 22){  
+        if (contadorMovimientos == 22){  
             nave.perderVida(danio)
-            self.morir()}   
+            self.desaparecer()}   
+    
+    }
 
+    method desaparecer() {
+      game.removeVisual(self)
     }
 
     method moverse(){
@@ -114,7 +117,7 @@ class Tiro {
     method subir(){
         position = position.up(1)
         contadorMovimientos += 1 
-        if (contadorMovimientos >= 24)  
+        if (contadorMovimientos == 24)  
             self.desaparecer()
     }
 
@@ -148,3 +151,18 @@ object vidaNave {
   method position() = game.center().right(11).up(11)  
   method textColor() = paleta.rojo() 
 }
+
+/*
+// Función para finalizar el juego y mostrar la pantalla de puntaje final
+method finalizarJuego() {
+  //remover todos los visuals??
+  game.boardGround("gameOver.png")
+  game.addVisual(gameFinalTexto)
+}
+
+object gameFinalTexto {
+  method text() = "TU PUNTAJE FUE DE: " + puntaje.puntos
+  method position() = game.center()
+  method textColor() = paleta.blanco()
+}
+*/
