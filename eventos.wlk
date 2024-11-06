@@ -29,12 +29,13 @@ object eventos{
 
   method muerteJefe() {
     ronda += 1
-    self.nuevaRonda()
+    if (ronda == 2) self.ganar()
+    else self.nuevaRonda()
   }
 
   method nuevaRonda() {
     if(ronda == 1) {
-      game.onTick(2000, "spawnVerde", { spawn.alienVerde() })
+      game.onTick(2500, "spawnVerde", { spawn.alienVerde() })
     }
     
   }
@@ -58,6 +59,9 @@ object spawn{
     nuevoAlien.moverse()
   }
   method jefe() {
+    const nuevoJefe = new Jefe()
+    game.addVisual(nuevoJefe)
+    nuevoJefe.config()
 
   }
 }

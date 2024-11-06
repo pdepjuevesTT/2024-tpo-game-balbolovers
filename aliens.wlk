@@ -13,7 +13,7 @@ import objetos.*
 
 class Alien {
   
-    method image() = "alienRojo60.png"
+    method image() = "alienVerde60.png"
     var property position = posicionAleatoria.calcular()
   
     var vida = 50
@@ -52,14 +52,14 @@ class Alien {
 
 method moverse() {
     moviendo = true
-    game.onTick(300, "movimientoAlien_" + id, { 
+    game.onTick(700, "movimientoAlien" + id, { 
       if (moviendo) self.bajar() 
     })
   }
 
   method detenerMovimiento() {
     moviendo = false
-    game.removeTickEvent("movimientoAlien_" + id)
+    game.removeTickEvent("movimientoAlien" + id)
   }
   
 }
@@ -74,18 +74,74 @@ method moverse() {
 
 class Jefe {
   var property position = posicionAleatoria.calcular()
+  var property image = "alienRojo60.png"
   
-    var vida = 50 * nivel
-    const danio = 20 * nivel
+  var vida = 50 * nivel
+  const danio = 20 * nivel
 
-    var property nivel = eventos.ronda()
+  var property nivel = eventos.ronda()
 
-    method perderVida(n) {
+  method confColisiones(){
+      game.onCollideDo(self, {nave => nave.perderVida(danio) })
+    }
+
+  method perderVida(n) {
       vida = vida-n
       if(vida <= 0) self.morir()
     }
-    method morir() {
+  method morir() {
       game.removeVisual(self)
+      eventos.muerteJefe()
+      game.removeTickEvent("disparar")
+      game.removeTickEvent("izquierda")
+      game.removeTickEvent("derecha")
     }
+
+  method disparar() {
+    const nuevoTiro = new Tiro(danio = danio, position = position.down(2))
+    game.addVisual(nuevoTiro)
+    nuevoTiro.confColisiones()
+    nuevoTiro.moverseAbajo()
+    
+  }
+
+  method izquierda(){
+    position = position.left(1)
+    self.controlarMovimiento()
+  }
+
+  method derecha() {
+    position = position.right(1)
+    self.controlarMovimiento()
+  }
+
+  method movimientoDerecha() {
+    game.onTick(500,"derecha",{self.derecha()})
+  }
+
+  method movimientoIzquierda() {
+    game.onTick(500,"izquierda",{self.izquierda()})
+  }
+
+  method controlarMovimiento() {
+    if(position.x() == 24) {
+      game.removeTickEvent("derecha")
+      self.movimientoIzquierda()
+    } 
+    else if(position.x() == 1) {
+      game.removeTickEvent("izquierda")
+      self.movimientoDerecha()
+    }
+  }
+
+  method confDisparo() {
+    game.onTick(2000, "disparar" , {self.disparar()})
+  }
+
+  method config() {
+    self.confColisiones()
+    self.movimientoDerecha()
+    self.confDisparo()
+  }
 
 }
