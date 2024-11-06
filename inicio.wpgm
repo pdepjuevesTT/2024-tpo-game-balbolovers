@@ -3,6 +3,8 @@ import objetos.*
 import colores.*
 import pantallas.*
 import eventos.*
+import aliens.*
+import nave.*
 
 
 
@@ -30,7 +32,7 @@ program inicio {
     game.addVisualCharacter(nave)
 
 	
-    game.onTick(2000, "spawnVerde", { spawn.alienVerde() })
+    eventos.nuevaRonda()
    
 	keyboard.space().onPressDo({nave.disparar()})
 

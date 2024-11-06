@@ -2,13 +2,47 @@ import wollok.game.*
 import colores.*
 import pantallas.*
 import objetos.*
+import aliens.*
+import nave.*
 
 object eventos{
+  var property ronda = 1 
   method ganar(){
-    self.borrarVisuales()
+    game.clear()
+    game.addVisual(gameFinalTexto)
+    game.addVisual(misionSuperada)
   }
   method perder(){
-    self.borrarVisuales()
+    game.clear()
+    game.addVisual(gameFinalTexto)
+    game.addVisual(gameOver)
+  }
+
+  method jefe(){
+    if(ronda == 1){
+      game.removeTickEvent("spawnVerde")
+      spawn.jefe()
+    
+  }
+
+  }
+
+  method muerteJefe() {
+    ronda += 1
+    self.nuevaRonda()
+  }
+
+  method nuevaRonda() {
+    if(ronda == 1) {
+      game.onTick(2000, "spawnVerde", { spawn.alienVerde() })
+    }
+    
+  }
+
+  method powerUp() {
+    nave.agregarVida(40)
+    nave.subirNivel()
+
   }
 
   method borrarVisuales(){
@@ -22,6 +56,14 @@ object spawn{
     game.addVisual(nuevoAlien)
     nuevoAlien.confColisiones()
     nuevoAlien.moverse()
-    if (puntaje.puntos() > 200) game.removeTickEvent("spawnVerde")
+  }
+  method jefe() {
+
   }
 }
+
+
+
+
+
+
