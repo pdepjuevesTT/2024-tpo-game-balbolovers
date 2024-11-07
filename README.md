@@ -12,7 +12,7 @@ PdeP Invaders
 (agregar)
 
 ## Reglas de Juego / Instrucciones
-El juego¹ se basa en el famoso Space Invaders. Éste contiene el personaje que nosotros controlamos², que es una nave³ que esta en la parte inferior de la pantalla la cual podremos mover hacia los costados² con el objetivo de esquivar y disparar⁴ a los aliens³, las entidades enemigas a las que tendremos que eliminar⁵ para obtener puntos y PowerUps. Estos cuentan con vida⁶ y cada uno otorga una distinta cantidad de puntos⁷ al ser eliminado, con el avanzar del juego tambien mejoraran sus habilidades pudiendo disparar, aumentar su vida, entre otras cosas, esto varia segun el tipo⁸ de alien. Cuando se llegue a una cierta cantidad de puntos (según los aliens derrotados) aparecera un jefe⁹, el cual tambien deberemos derrotar para continuar sumando puntos. El juego termia cuando nuestra nave se quede sin vida (perdemos)¹⁰ o cuando llegamos a los 3000 puntos (ganamos)¹¹, en cualquiera de los dos casos el juego finaliza y se muestran los puntos por pantalla¹².
+El juego¹ se basa en el famoso Space Invaders. Éste contiene el personaje que nosotros controlamos², que es una nave³ que esta en la parte inferior de la pantalla la cual podremos mover hacia los costados² con el objetivo de esquivar y disparar⁴ a los aliens³, las entidades enemigas a las que tendremos que eliminar⁵ para obtener puntos y PowerUps. Estos cuentan con vida⁶ y cada uno otorga una distinta cantidad de puntos⁷ al ser eliminado, con el avanzar del juego tambien mejoraran sus habilidades pudiendo disparar, aumentar su vida, entre otras cosas, esto varia segun el tipo⁸ de alien. Cuando se llegue a una cierta cantidad de puntos (según los aliens derrotados) aparecera un jefe⁹, el cual tambien deberemos derrotar para pasar de ronda y continuar sumando puntos. El juego termia cuando nuestra nave se quede sin vida (perdemos)¹⁰ o cuando llegamos a los 3000 puntos (ganamos)¹¹, en cualquiera de los dos casos el juego finaliza y se muestran los puntos por pantalla¹².
 
 **Conceptos Aplicados:**
 - 1: Utilizando Wollok Game con bibliotecas y mensajes como: "import wollok.game.*" y "game.start()". Sin ellas el juego no funciona.
@@ -23,10 +23,10 @@ El juego¹ se basa en el famoso Space Invaders. Éste contiene el personaje que 
 - 6: "var vida = 50" Definida por una referencia o atributo vida, con valor inicial 50.
 - 7: Al morir el alien, se ejecuta: "puntaje.cambiarPuntos(50)" (Suma puntos basados en la vida del alien).
 - 8:
-- 9:
+- 9: Este jefe cuenta con una cantidad de vida y de daño proporcional al nivel:  "var vida = 50 * nivel" y "const danio = 20 * nivel".
 - 10: La nave cuenta con 100 puntos de vida ("var vida = 100"), si ésta se queda sin vida ("if(vida <= 0) nave.morir()") muere ("game.removeVisual(nave)") y perdemos ("eventos.perder()").
-- 11:
-- 12:
+- 11: Se procede a mostrar por pantalla las respectivas imagenes de victoria ("game.addVisual(gameFinalTexto)" y "game.addVisual(misionSuperada)")
+- 12: Se muestran los puntos por pantalla independientemente de haber perdido o ganado ("method text() = "TU PUNTAJE FUE DE: " + puntaje.puntos()")
   
 ## Otros
 
