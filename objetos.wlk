@@ -17,6 +17,9 @@ method cambiarPuntos(n){
   puntos += n
   self.chequearEventos()
 }
+method reiniciar(){
+  puntos = 0
+}
 
 method chequearEventos(){
   if(puntos == 1000) eventos.jefe()
@@ -27,6 +30,7 @@ method chequearEventos(){
 method text() = "PUNTOS: " + puntos
 method position() = game.center().right(11).up(12)
 method textColor() = paleta.blanco()
+method perderVida(_){}
 }
 
 // Objeto para mostrar la vida de la nave en pantalla
@@ -35,7 +39,8 @@ object vidaNave {
   method actualizarVida(n) {vidaRestante = n}
   method text() = "VIDA: " + vidaRestante
   method position() = game.center().right(11).up(11)  
-  method textColor() = paleta.rojo() 
+  method textColor() = paleta.rojo()
+  method perderVida(_){}
 }
 
 

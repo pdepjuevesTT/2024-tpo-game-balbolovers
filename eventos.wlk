@@ -5,17 +5,27 @@ import objetos.*
 import aliens.*
 import nave.*
 
+
+//class Ronda {
+ // const 
+//}
+
 object eventos{
+ // const rondas = [ronda1, ronda2]
+
   var property ronda = 1 
   method ganar(){
     game.clear()
     game.addVisual(gameFinalTexto)
     game.addVisual(misionSuperada)
+    game.addVisual(volverAinicio)
+    keyboard.w().onPressDo({self.reiniciar()})
   }
   method perder(){
     game.clear()
     game.addVisual(gameFinalTexto)
     game.addVisual(gameOver)
+    keyboard.w().onPressDo({self.reiniciar()})
   }
 
   method jefe(){
@@ -30,7 +40,7 @@ object eventos{
   method muerteJefe() {
     ronda += 1
     if (ronda == 2) self.ganar()
-    else self.nuevaRonda()
+    else self.ganar()
   }
 
   method nuevaRonda() {
@@ -38,6 +48,18 @@ object eventos{
       game.onTick(2500, "spawnVerde", { spawn.alienVerde() })
     }
     
+  }
+
+  method reiniciar(){
+    game.clear()
+    ronda = 1
+    nave.reiniciar()
+    puntaje.reiniciar()
+    game.addVisual(puntaje)
+    game.addVisual(vidaNave)
+    game.addVisualCharacter(nave)
+    keyboard.space().onPressDo({nave.disparar()})
+    self.nuevaRonda()
   }
 
   method powerUp() {
@@ -65,6 +87,8 @@ object spawn{
 
   }
 }
+
+
 
 
 

@@ -14,12 +14,13 @@ import objetos.*
 class Alien {
   
     method image() = "alienVerde60.png"
-    var property position = posicionAleatoria.calcular()
-  
+    var property position = new MutablePosition(x = 0.randomUpTo(game.width()).truncate(0) , y = 23)
+    //posicionAleatoria.calcular()
+    //new MutablePosition(calcular.posicionAleatoria())
     var vida = 50
-    const danio = 20
+    const danio = 1
     var id = 0.randomUpTo(10000)  // Genera un identificador único para cada alien
-  var moviendo = false
+    var moviendo = false
 
     method perderVida(n) {
     vida = vida-n
@@ -37,12 +38,11 @@ class Alien {
     } 
 
     method bajar(){
-        position = position.down(1)
+        position.goDown(1)
        
         if (position.y() == 1){  
             nave.perderVida(danio)
             self.desaparecer()}   
-    
     }
 
     method desaparecer() {
@@ -73,7 +73,7 @@ method moverse() {
 */
 
 class Jefe {
-  var property position = posicionAleatoria.calcular()
+  var property position = new MutablePosition(x = 0.randomUpTo(game.width()).truncate(0) , y = 23)
   var property image = "alienRojo60.png"
   
   var vida = 50 * nivel
@@ -91,14 +91,14 @@ class Jefe {
     }
   method morir() {
       game.removeVisual(self)
-      eventos.muerteJefe()
       game.removeTickEvent("disparar")
       game.removeTickEvent("izquierda")
       game.removeTickEvent("derecha")
+      eventos.muerteJefe()
     }
 
   method disparar() {
-    const nuevoTiro = new Tiro(danio = danio, position = position.down(2))
+    const nuevoTiro = new Tiro(danio = danio, position = new MutablePosition(x = position.x(), y = position.y() - 1))
     game.addVisual(nuevoTiro)
     nuevoTiro.confColisiones()
     nuevoTiro.moverseAbajo()
@@ -106,12 +106,12 @@ class Jefe {
   }
 
   method izquierda(){
-    position = position.left(1)
+    position.goLeft(1)
     self.controlarMovimiento()
   }
 
   method derecha() {
-    position = position.right(1)
+    position.goRight(1)
     self.controlarMovimiento()
   }
 

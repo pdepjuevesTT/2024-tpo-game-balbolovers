@@ -42,3 +42,16 @@ object gameFinalTexto {
   method position() = game.center().down(3)
   method textColor() = paleta.blanco()
 }
+
+object volverAinicio {
+  var visible = true
+  method text() = "PRESIONE 'W' PARA VOLVER AL INICIO"
+  method position() = game.center().down(5)
+  method textColor() = paleta.blanco()
+
+  method parpadear() {
+    if (visible) game.removeVisual(self)
+    else game.addVisual(self)
+    visible = !visible
+  }
+}

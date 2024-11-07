@@ -8,7 +8,7 @@ import objetos.*
 object nave {
   var property nivel = 1
   var property image = "naveEtapa1.png"
-  var property position = game.origin()
+  var property position = new MutablePosition(x = game.origin().x(), y = game.origin().y())
   method posicion() = position
   var poder = 50
   var vida = 100
@@ -20,16 +20,22 @@ object nave {
     game.say(self,self.estadisticas())
   }
 
+  method reiniciar() {
+    nivel = 1
+    self.cambiarImagen()
+    vida = 100
+    vidaNave.actualizarVida(vida)
+  }
+
 
 
   method cambiarImagen(){
-    if(nivel == 2) image = "naveEtapa2.png"
-    else if(nivel == 3) image = "naveEtapa3.png"
-    else if(nivel == 4) image = "naveEtapa4.png"
+    image = "naveEtapa" + nivel +".png"
   }
 
+
   method disparar() {
-    const nuevoTiro = new Tiro(danio = poder, position = position.up(1))
+    const nuevoTiro = new Tiro (danio = poder, position = new MutablePosition(x = position.x(), y = position.y() + 1))
     game.addVisual(nuevoTiro)
     nuevoTiro.confColisiones()
     nuevoTiro.moverseArriba()
@@ -58,20 +64,16 @@ class Tiro {
     var id = 0.randomUpTo(10000)
     var moviendo = false
     var estado = 0
-    method subirAux(){
-        position = position.up(1)
-        self.fueraTablero(24)
-    }
 
     method subir(){
-      position = position.up(1)
+      position.goUp(1)
       self.fueraTablero(24)
     }
 
     
 
     method bajar(){
-      position = position.down(1)
+      position.goDown(1)
       self.fueraTablero(0)
     }
 
