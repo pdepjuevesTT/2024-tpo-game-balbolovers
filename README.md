@@ -17,7 +17,7 @@ El juego¹ se basa en el famoso Space Invaders. Éste contiene el personaje que 
 **Conceptos Aplicados:**
 - 1: Utilizando Wollok Game con bibliotecas y mensajes como: "import wollok.game.*" y "game.start()". Sin ellas el juego no funciona.
 - 2: El control que tenemos sobre la nave es gracias a que le decimos: "game.addVisualCharacter(nave)" para que el juego sepa que ese es el elemento que queremos controlar. Y con "keyboard.tecla().onPressDo{nave.hacerAlgo()}"
-- 3: Es posible visualizar a los personajes de nuestro juego gracias a un metodo que cada entidad tiene con su respectiva imagen, como: "method image() = "nave60v2.png"" o "method image() = "alienRojo60.png"". Y para mostrar o quitar las visuales del tablero con: "game.addVisual()" y "game.removeVisual()".
+- 3: Es posible visualizar a los personajes de nuestro juego gracias a un metodo que cada entidad tiene con su respectiva imagen, como: "method image() = "naveEtapa1.png"" o "method image() = "alienRojo60.png"". Y para mostrar o quitar las visuales del tablero con: "game.addVisual()" y "game.removeVisual()".
 - 4: Es un Evento Automatico que cada tanto tiempo ("onTick()") se mueve un casillero hacia arriba.
 - 5: Se basa en Colisiones, cuando la bala choca con el alien desaparece ("game.onCollideDo(bala, {alien => alien.perderVida(danio) bala.desaparecer()})") y al mismo tiempo el alien pierde vida, si éste muere desaparece ("game.removeVisual()").
 - 6: "var vida = 50" Definida por una referencia o atributo vida, con valor inicial 50.
