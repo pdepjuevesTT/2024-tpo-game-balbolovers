@@ -13,18 +13,33 @@ object posicionAleatoria {
 
 object puntaje { 
 var property puntos = 0
+var property puntosRonda = 0
+var property puntosPower = 0
+
 method cambiarPuntos(n){
   puntos += n
+  puntosRonda += n 
+  puntosPower += n
   self.chequearEventos()
 }
 method reiniciar(){
+  self.reiniciarPuntosPower()
+  self.reiniciarPuntosRonda()
   puntos = 0
+  
+}
+
+method reiniciarPuntosRonda(){
+  puntosRonda = 0
+}
+
+method reiniciarPuntosPower(){
+  puntosPower = 0
 }
 
 method chequearEventos(){
-  if(puntos == 1000) eventos.jefe()
-  if(puntos == 750) eventos.powerUp()
-
+  if(puntosRonda == 750) eventos.jefe()
+  if(puntosPower == 500) eventos.powerUp()
 }
 
 method text() = "PUNTOS: " + puntos

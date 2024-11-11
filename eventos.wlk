@@ -17,6 +17,7 @@ object eventos{
   method ganar(){
     game.clear()
     game.addVisual(gameFinalTexto)
+    game.onTick(500, "parpadeoPuntajes", { gameFinalTexto.parpadear() })
     game.addVisual(misionSuperada)
     game.addVisual(volverAinicio)
     keyboard.w().onPressDo({self.reiniciar()})
@@ -24,30 +25,35 @@ object eventos{
   method perder(){
     game.clear()
     game.addVisual(gameFinalTexto)
+    game.onTick(500, "parpadeoPuntajes", { gameFinalTexto.parpadear() })
     game.addVisual(gameOver)
+    game.addVisual(volverAinicio)
     keyboard.w().onPressDo({self.reiniciar()})
   }
 
   method jefe(){
-    if(ronda == 1){
-      game.removeTickEvent("spawnVerde")
-      spawn.jefe()
-    
-  }
+    puntaje.reiniciarPuntosRonda()
+    game.removeTickEvent("spawnAlien")
+    spawn.jefe()
 
   }
 
   method muerteJefe() {
     ronda += 1
-    if (ronda == 2) self.ganar()
-    else self.ganar()
+    if (ronda == 4) self.ganar()
+    else self.nuevaRonda()
   }
 
   method nuevaRonda() {
     if(ronda == 1) {
-      game.onTick(2500, "spawnVerde", { spawn.alienVerde() })
+      game.onTick(2500, "spawnAlien", { spawn.alienVerde() })
     }
-    
+    else if (ronda == 2) {
+      game.onTick(2000, "spawnAlien", { spawn.alienRojo() })
+    }
+    else if (ronda == 3) {
+      game.onTick(1500, "spawnAlien", { spawn.alienVerde2() })
+    }
   }
 
   method reiniciar(){
@@ -62,10 +68,18 @@ object eventos{
     self.nuevaRonda()
   }
 
+  method reiniciarRonda(){
+    game.clear()
+    game.addVisual(puntaje)
+    game.addVisual(vidaNave)
+    game.addVisualCharacter(nave)
+    keyboard.space().onPressDo({nave.disparar()})
+  }
+
   method powerUp() {
     nave.agregarVida(40)
     nave.subirNivel()
-
+    puntaje.reiniciarPuntosPower()
   }
 
   method borrarVisuales(){
@@ -75,14 +89,23 @@ object eventos{
 
 object spawn{
   method alienVerde(){
-    const nuevoAlien = new Alien()
-    game.addVisual(nuevoAlien)
-    nuevoAlien.confColisiones()
-    nuevoAlien.moverse()
+    const nuevoAlien = new AlienVerde()
+    nuevoAlien.config()
   }
+
+  method alienRojo(){
+    const nuevoAlien = new AlienRojo()
+    nuevoAlien.config()
+  }
+
+  method alienVerde2(){
+    const nuevoAlien = new AlienVerde2()
+    nuevoAlien.config()
+  }
+
+
   method jefe() {
     const nuevoJefe = new Jefe()
-    game.addVisual(nuevoJefe)
     nuevoJefe.config()
 
   }

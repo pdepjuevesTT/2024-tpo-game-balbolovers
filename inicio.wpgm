@@ -12,34 +12,33 @@ object pantallaInicio {
 
     method image 
 }
-
-
-REEMPLAZAR POR ESTO??   
-program inicio {
-  pantallaInicio.mostrar()
-  keyboard.w().onPressDo({ iniciarJuego() })
-
-  method iniciarJuego() {
-    game.removeVisual(pantallaInicio)
-    game.removeVisual(tituloParpadeante)
-    game.removeTickEvent("parpadeoTexto")
 */
 
-program inicio {
+object pantallaInicio {
+    var visible = true
+    method image() = "Wcomenzar.png"
+    var property position = game.center().up(9).right(3)
     
+    method parpadear() {
+    if (visible) game.removeVisual(self)
+    else game.addVisual(self)
+    visible = !visible
+}
+}
+
+program inicio {
+
+
     game.width(25) 
     game.height(25)
     game.cellSize(60)
 	game.title("PdeP Invaders")
 	game.boardGround("space.png")
-    game.addVisual(puntaje)
-    game.addVisual(vidaNave)
-    game.addVisualCharacter(nave)
+    
+    game.addVisual(pantallaInicio)
+    game.onTick(500, "parpadeoInicio", { pantallaInicio.parpadear() })
+    keyboard.w().onPressDo({ eventos.reiniciar() })
 
-	
-    eventos.nuevaRonda()
-   
-	keyboard.space().onPressDo({nave.disparar()})
 
     game.start()
 

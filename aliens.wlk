@@ -11,31 +11,18 @@ import objetos.*
         //const x = x-1.randomUpTo(x+1).truncate(0)
         //position = game.at(x,y)
 
-class Alien {
-  
-    method image() = "alienVerde60.png"
-    var property position = new MutablePosition(x = 0.randomUpTo(game.width()).truncate(0) , y = 23)
-    //posicionAleatoria.calcular()
-    //new MutablePosition(calcular.posicionAleatoria())
-    var vida = 50
-    const danio = 1
-    var id = 0.randomUpTo(10000)  // Genera un identificador único para cada alien
+class Alien inherits Enemigo() {
+
+    const property velocidadSpawn
+    
+    const id = 0.randomUpTo(10000)  // Genera un identificador único para cada alien
     var moviendo = false
 
-    method perderVida(n) {
-    vida = vida-n
-    if(vida <= 0) self.morir()
-    }
 
-    method morir() {
-    puntaje.cambiarPuntos(50) // Suma puntos basados en la vida del alien
+    override method morir() {
     self.detenerMovimiento()
-    game.removeVisual(self)
+    super()
     }
-  
-    method confColisiones(){
-      game.onCollideDo(self, {nave => nave.perderVida(danio) self.morir() })
-    } 
 
     method bajar(){
         position.goDown(1)
@@ -61,36 +48,50 @@ method moverse() {
     moviendo = false
     game.removeTickEvent("movimientoAlien" + id)
   }
+
+  override method config(){
+    super()
+    self.moverse()
+  }
   
 }
 
+class AlienVerde inherits Alien(danio = 20, vida = 50, velocidadSpawn = 2500){
+  var property image = "alienVerde60.png"
 
-/*object jefeAlien {
-  const hitbox = lista 
-
+  override method morir(){
+    puntaje.cambiarPuntos(50)
+    super()
+  }
 
 }
-*/
 
-class Jefe {
-  var property position = new MutablePosition(x = 0.randomUpTo(game.width()).truncate(0) , y = 23)
+class AlienRojo inherits Alien(danio = 40, vida = 50, velocidadSpawn = 2000){
   var property image = "alienRojo60.png"
-  
-  var vida = 50 * nivel
-  const danio = 20 * nivel
 
-  var property nivel = eventos.ronda()
+  override method morir(){
+    puntaje.cambiarPuntos(70)
+    super()
+  }
 
-  method confColisiones(){
-      game.onCollideDo(self, {nave => nave.perderVida(danio) })
-    }
+}
 
-  method perderVida(n) {
-      vida = vida-n
-      if(vida <= 0) self.morir()
-    }
-  method morir() {
-      game.removeVisual(self)
+class AlienVerde2 inherits Alien(danio = 40, vida = 70, velocidadSpawn = 1500){
+  var property image = "alienVerde260.png"
+
+  override method morir(){
+    puntaje.cambiarPuntos(70)
+    super()
+  }
+
+}
+
+
+class Jefe inherits Enemigo(vida = 50 * nivel, danio = 20 * nivel) {
+  var property image = "alienRojo60.png"
+
+  override method morir() {
+      super()
       game.removeTickEvent("disparar")
       game.removeTickEvent("izquierda")
       game.removeTickEvent("derecha")
@@ -138,10 +139,38 @@ class Jefe {
     game.onTick(2000, "disparar" , {self.disparar()})
   }
 
-  method config() {
-    self.confColisiones()
+  override method config() {
+    super()
     self.movimientoDerecha()
     self.confDisparo()
   }
 
+}
+
+
+class Enemigo{
+  var property position = new MutablePosition(x = 0.randomUpTo(game.width()).truncate(0) , y = 23)
+
+  var property nivel = eventos.ronda()
+  var vida
+  var danio
+
+
+  method perderVida(n) {
+    vida = vida-n
+    if(vida <= 0) self.morir()
+    }
+
+  method morir() {
+    game.removeVisual(self)
+    }
+
+  method confColisiones(){
+      game.onCollideDo(self, {nave => nave.perderVida(danio) })
+    }
+  
+  method config(){
+    game.addVisual(self)
+    self.confColisiones()
+  }
 }
