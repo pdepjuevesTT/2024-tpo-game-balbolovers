@@ -28,7 +28,6 @@ object pantallaInicio {
 
 program inicio {
 
-
     game.width(25) 
     game.height(25)
     game.cellSize(60)
@@ -39,30 +38,10 @@ program inicio {
     game.onTick(500, "parpadeoInicio", { pantallaInicio.parpadear() })
     keyboard.w().onPressDo({ eventos.reiniciar() })
 
-
     game.start()
-
-
 }
 
 //herencia y polimorfismo
 //pantallade inicio
 //problemas con ganar y perder
 // objetos en eventos con jefe, muerte y rondas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

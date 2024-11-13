@@ -12,40 +12,40 @@ object posicionAleatoria {
 }
 
 object puntaje { 
-var property puntos = 0
-var property puntosRonda = 0
-var property puntosPower = 0
+  var property puntos = 0
+  var property puntosRonda = 0
+  var property puntosPower = 0
 
-method cambiarPuntos(n){
-  puntos += n
-  puntosRonda += n 
-  puntosPower += n
-  self.chequearEventos()
-}
-method reiniciar(){
-  self.reiniciarPuntosPower()
-  self.reiniciarPuntosRonda()
-  puntos = 0
-  
-}
+  method cambiarPuntos(n){
+    puntos += n
+    puntosRonda += n 
+    puntosPower += n
+    self.chequearEventos()
+  }
 
-method reiniciarPuntosRonda(){
-  puntosRonda = 0
-}
+  method reiniciar(){
+    self.reiniciarPuntosPower()
+    self.reiniciarPuntosRonda()
+    puntos = 0
+  } 
 
-method reiniciarPuntosPower(){
-  puntosPower = 0
-}
+  method reiniciarPuntosRonda(){
+    puntosRonda = 0
+  }
 
-method chequearEventos(){
-  if(puntosRonda == 750) eventos.jefe()
-  if(puntosPower == 500) eventos.powerUp()
-}
+  method reiniciarPuntosPower(){
+    puntosPower = 0
+  }
 
-method text() = "PUNTOS: " + puntos
-method position() = game.center().right(11).up(12)
-method textColor() = paleta.blanco()
-method perderVida(_){}
+  method chequearEventos(){
+    if(puntosRonda == 750) eventos.jefe()
+    if(puntosPower == 500) eventos.powerUp()
+  }
+
+  method text() = "PUNTOS: " + puntos
+  method position() = game.center().right(11).up(12)
+  method textColor() = paleta.blanco()
+  method perderVida(_){}
 }
 
 // Objeto para mostrar la vida de la nave en pantalla
@@ -57,7 +57,6 @@ object vidaNave {
   method textColor() = paleta.rojo()
   method perderVida(_){}
 }
-
 
 //const x = 0.randomUpTo(game.width()).truncate(0)
         //const y = y.randomUpTo(y).truncate(0)

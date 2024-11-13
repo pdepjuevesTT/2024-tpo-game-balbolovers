@@ -5,18 +5,15 @@ import eventos.*
 import aliens.*
 import nave.*
 
-
 object gameOver{
   method image() = "gameOverrr.png"
   var property position = game.center().up(8).right(5)
-  
 }
 
 object misionSuperada{
   method image() = "mision superada.png"
   var property position = game.center().up(8).right(3)
 }
-
 
 object gameFinalTexto {
   var visible = true
@@ -28,7 +25,7 @@ object gameFinalTexto {
     if (visible) game.removeVisual(self)
     else game.addVisual(self)
     visible = !visible
-}
+  }
 }
 
 object volverAinicio {
