@@ -5,18 +5,33 @@ import objetos.*
 import aliens.*
 import nave.*
 
-/* //posible implementacion de lo que nos dijo fede
+ /*//posible implementacion de lo que nos dijo fede
 class Ronda {
   const intervaloSpawn
   const tipoAlien
 
-  method iniciar(){
-    game.onTick(intervaloSpawn, "spawnAlien", { spawn.tipoAlien()})
+  method iniciar() {
+    game.onTick(intervaloSpawn, "spawnAlien", { self.spawnearAlien()})
+  }
+
+  method spawnearAlien() {
+    if (tipoAlien == "alienVerde") {
+      spawn.alienVerde()
+    } else if (tipoAlien == "alienRojo") {
+      spawn.alienRojo()
+    } else if (tipoAlien == "alienVioleta") {
+      spawn.alienVioleta()
+    }
   }
 }
 
 object eventos{
-  const rondas = [Ronda(3000, "alienVerde"), Ronda(2500, "alienRojo"), Ronda(2000, "alienVioleta")]
+  
+  const ronda1 = new Ronda(3000, "alienVerde")
+  const ronda2 = new Ronda(2500, "alienRojo")
+  const ronda3 = new Ronda(2000, "alienVioleta")
+
+  const rondas = [ronda1, ronda2, ronda3]
 
   var property rondaActual = 1
 
@@ -83,8 +98,8 @@ object eventos{
     nave.subirNivel()
     puntaje.reiniciarPuntosPower()
   }
-}*/
-
+}
+*/
 object eventos{
 
   var property ronda = 1 
