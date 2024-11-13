@@ -23,6 +23,7 @@ object nave {
     self.cambiarImagen()
     vida = 100
     vidaNave.actualizarVida(vida)
+    self.confColisiones()
   }
 
   method cambiarImagen(){
@@ -51,6 +52,10 @@ object nave {
   method agregarVida(n){
     vida += n
     vidaNave.actualizarVida(vida)
+  }
+
+  method confColisiones(){
+    game.onCollideDo(self, {alien => alien.perderVida(poder)})
   }
 }
 
