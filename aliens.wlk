@@ -131,7 +131,7 @@ class Jefe inherits Enemigo(vida = 50 * nivel, danio = 50 * nivel) {
 class Enemigo{
   var property position = new MutablePosition(x = 0.randomUpTo(game.width()).truncate(0) , y = 23)
 
-  var property nivel = eventos.ronda()
+  var property nivel = eventos.rondaActual //antes: var property nivel = eventos.ronda()
   var vida
   var danio
 
