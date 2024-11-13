@@ -31,9 +31,6 @@ class Alien inherits Enemigo() {
       self.desaparecer()}   
   }
 
-  method desaparecer() {
-    game.removeVisual(self)
-  }
 
   method moverse() {
     moviendo = true
@@ -66,7 +63,7 @@ class AlienVioleta inherits Alien(puntos = 50, danio = 40, vida = 70){
   var property image = "alienVioleta.png"
 }
 
-class Jefe inherits Enemigo(vida = 150 * nivel, danio = 50 * nivel) {
+class Jefe inherits Enemigo(vida = 50 * nivel, danio = 50 * nivel) {
   var property image = "jefeBlanco1.png"
 
   override method morir() {
@@ -76,6 +73,9 @@ class Jefe inherits Enemigo(vida = 150 * nivel, danio = 50 * nivel) {
       game.removeTickEvent("derecha")
       eventos.muerteJefe()
     }
+
+override method desaparecer() {
+  }
 
   method disparar() {
     const nuevoTiro = new Tiro(danio = danio, position = new MutablePosition(x = position.x(), y = position.y() - 1))
@@ -118,6 +118,7 @@ class Jefe inherits Enemigo(vida = 150 * nivel, danio = 50 * nivel) {
     game.onTick(2000, "disparar" , {self.disparar()})
   }
 
+
   override method config() {
     super()
     self.movimientoDerecha()
@@ -131,7 +132,7 @@ class Enemigo{
 
   var property nivel = eventos.ronda()
   var vida
-  var danio
+  var property danio
 
   method perderVida(n) {
     vida = vida-n
@@ -142,12 +143,14 @@ class Enemigo{
     game.removeVisual(self)
   }
 
-  method confColisiones(){
-      game.onCollideDo(self, {nave => nave.perderVida(danio) })
+  method desaparecer() {
+    game.removeVisual(self)
   }
+
+
   
   method config(){
     game.addVisual(self)
-    self.confColisiones()
+    //self.confColisiones()
   }
 }
