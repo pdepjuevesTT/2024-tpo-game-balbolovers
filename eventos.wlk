@@ -27,9 +27,9 @@ class Ronda {
 
 object eventos{
   
-  const ronda1 = new Ronda(intervaloSpawn = 3000, tipoAlien = "alienVerde")
-  const ronda2 = new Ronda(intervaloSpawn = 2500, tipoAlien = "alienRojo")
-  const ronda3 = new Ronda(intervaloSpawn = 2000, tipoAlien = "alienVioleta")
+  const ronda1 = new Ronda(intervaloSpawn = 3000, tipoAlien = AlienVerde)
+  const ronda2 = new Ronda(intervaloSpawn = 2500, tipoAlien = AlienRojo)
+  const ronda3 = new Ronda(intervaloSpawn = 2000, tipoAlien = AlienVioleta)
 
   const rondas = [ronda1, ronda2, ronda3]
 
