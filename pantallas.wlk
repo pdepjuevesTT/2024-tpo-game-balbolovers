@@ -15,6 +15,11 @@ object misionSuperada{
   var property position = game.center().up(8).right(3)
 }
 
+object tituloSpace{
+  method image() = "spaceInvadersTitulo.png"
+  var property position = game.origin().up(14).right(5)
+}
+
 object gameFinalTexto {
   var visible = true
   method text() = "TU PUNTAJE FUE DE: " + puntaje.puntos()

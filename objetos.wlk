@@ -38,8 +38,8 @@ object puntaje {
   }
 
   method chequearEventos(){
-    if(puntosRonda == 750) eventos.jefe()
-    if(puntosPower == 500) eventos.powerUp()
+    if(puntosRonda >= 500) eventos.jefe()
+    if(puntosPower >= 300) eventos.powerUp()
   }
 
   method text() = "PUNTOS: " + puntos

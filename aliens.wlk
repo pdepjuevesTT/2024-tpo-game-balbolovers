@@ -12,13 +12,13 @@ import objetos.*
         //position = game.at(x,y)
 
 class Alien inherits Enemigo() {
-  var puntos
-  const property velocidadSpawn
+  const puntos
     
   const id = 0.randomUpTo(10000)  // Genera un identificador único para cada alien
   var moviendo = false
 
   override method morir() {
+    puntaje.cambiarPuntos(puntos)
     self.detenerMovimiento()
     super()
   }
@@ -54,42 +54,20 @@ class Alien inherits Enemigo() {
   
 }
 
-class AlienVerde inherits Alien(puntos = 50, danio = 20, vida = 50, velocidadSpawn = 2500){
+class AlienVerde inherits Alien(puntos = 50, danio = 20, vida = 50){
   var property image = "alienVerde60.png"
-
-  override method morir(){
-    puntaje.cambiarPuntos(puntos)
-    super()
-  }
-
 }
 
-class AlienRojo inherits Alien(puntos = 70, danio = 40, vida = 50, velocidadSpawn = 2000){
+class AlienRojo inherits Alien(puntos = 50, danio = 40, vida = 50){
   var property image = "alienRojo60.png"
-
-  override method morir(){
-    puntaje.cambiarPuntos(puntos)
-    super()
-  }
-
 }
 
-class AlienVerde2 inherits Alien(puntos = 70, danio = 40, vida = 70, velocidadSpawn = 1500){
-  var property image = "alienVerde260.png"
-
-  override method morir(){
-    puntaje.cambiarPuntos(puntos)
-    super()
-  }
-
+class AlienVioleta inherits Alien(puntos = 50, danio = 40, vida = 70){
+  var property image = "alienVioleta.png"
 }
-/*
-class AlienVerde2 inherits AlienRojo(danio = 40, vida = 70, velocidadSpawn = 1500){
-  override var property image = "alienVerde260.png"
-}
-*/
-class Jefe inherits Enemigo(vida = 50 * nivel, danio = 20 * nivel) {
-  var property image = "alienRojo60.png"
+
+class Jefe inherits Enemigo(vida = 150 * nivel, danio = 50 * nivel) {
+  var property image = "jefeBlanco1.png"
 
   override method morir() {
       super()

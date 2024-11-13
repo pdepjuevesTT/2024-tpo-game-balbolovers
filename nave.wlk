@@ -12,12 +12,10 @@ object nave {
   method posicion() = position
   var poder = 50
   var vida = 100
-  method estadisticas() = "ESTADISTICAS AUMENTADAS"
 
   method subirNivel(){
     nivel += 1
     self.cambiarImagen()
-    game.say(self,self.estadisticas())
   }
 
   method reiniciar() {

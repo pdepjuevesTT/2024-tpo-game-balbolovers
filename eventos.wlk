@@ -5,12 +5,29 @@ import objetos.*
 import aliens.*
 import nave.*
 
-//class Ronda {
- // const 
-//}
+/*
+class Ronda {
+  const intervaloSpawn
+  const tipoAlien
+
+  method iniciar(){
+    game.onTick(intervaloSpawn, "spawnAlien", { spawn.tipoAlien()})
+  }
+}
 
 object eventos{
- // const rondas = [ronda1, ronda2]
+  const rondas = [Ronda(3000, "alienVerde"), Ronda(2500, "alienRojo"), Ronda(2000, "alienVioleta")]
+
+  var property rondaActual = 1
+
+  //method ganar queda igual
+  //method perder queda igual
+  //method jefe queda igual
+
+}
+*/
+
+object eventos{
 
   var property ronda = 1 
   method ganar(){
@@ -45,13 +62,13 @@ object eventos{
 
   method nuevaRonda() {
     if(ronda == 1) {
-      game.onTick(2500, "spawnAlien", { spawn.alienVerde() })
+      game.onTick(3000, "spawnAlien", { spawn.alienVerde() })
     }
     else if (ronda == 2) {
-      game.onTick(2000, "spawnAlien", { spawn.alienRojo() })
+      game.onTick(2500, "spawnAlien", { spawn.alienRojo() })
     }
     else if (ronda == 3) {
-      game.onTick(1500, "spawnAlien", { spawn.alienVerde2() })
+      game.onTick(2000, "spawnAlien", { spawn.alienVioleta() })
     }
   }
 
@@ -80,10 +97,6 @@ object eventos{
     nave.subirNivel()
     puntaje.reiniciarPuntosPower()
   }
-
-  method borrarVisuales(){
-    game.allVisuals().map({visual => game.removeVisual(visual)})
-  }
 }
 
 object spawn{
@@ -97,8 +110,8 @@ object spawn{
     nuevoAlien.config()
   }
 
-  method alienVerde2(){
-    const nuevoAlien = new AlienVerde2()
+  method alienVioleta(){
+    const nuevoAlien = new AlienVioleta()
     nuevoAlien.config()
   }
 
@@ -106,7 +119,6 @@ object spawn{
   method jefe() {
     const nuevoJefe = new Jefe()
     nuevoJefe.config()
-
   }
 }
 

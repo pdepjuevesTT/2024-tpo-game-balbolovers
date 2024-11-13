@@ -34,6 +34,7 @@ program inicio {
 	game.title("PdeP Invaders")
 	game.boardGround("space.png")
     
+    game.addVisual(tituloSpace)
     game.addVisual(pantallaInicio)
     game.onTick(500, "parpadeoInicio", { pantallaInicio.parpadear() })
     keyboard.w().onPressDo({ eventos.reiniciar() })
