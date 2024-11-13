@@ -5,7 +5,7 @@ import objetos.*
 import aliens.*
 import nave.*
 
- /*//posible implementacion de lo que nos dijo fede
+ //posible implementacion de lo que nos dijo fede
 class Ronda {
   const intervaloSpawn
   const tipoAlien
@@ -27,9 +27,9 @@ class Ronda {
 
 object eventos{
   
-  const ronda1 = new Ronda(3000, "alienVerde")
-  const ronda2 = new Ronda(2500, "alienRojo")
-  const ronda3 = new Ronda(2000, "alienVioleta")
+  const ronda1 = new Ronda(intervaloSpawn = 3000, tipoAlien = "alienVerde")
+  const ronda2 = new Ronda(intervaloSpawn = 2500, tipoAlien = "alienRojo")
+  const ronda3 = new Ronda(intervaloSpawn = 2000, tipoAlien = "alienVioleta")
 
   const rondas = [ronda1, ronda2, ronda3]
 
@@ -99,7 +99,7 @@ object eventos{
     puntaje.reiniciarPuntosPower()
   }
 }
-*/
+/*
 object eventos{
 
   var property ronda = 1 
@@ -171,7 +171,7 @@ object eventos{
     puntaje.reiniciarPuntosPower()
   }
 }
-
+*/
 object spawn{
   method alienVerde(){
     const nuevoAlien = new AlienVerde()
