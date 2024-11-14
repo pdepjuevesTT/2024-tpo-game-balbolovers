@@ -6,10 +6,6 @@ import nave.*
 import objetos.*
 
 
-//const x = 0.randomUpTo(game.width()).truncate(0)
-        //const y = y.randomUpTo(y).truncate(0)
-        //const x = x-1.randomUpTo(x+1).truncate(0)
-        //position = game.at(x,y)
 
 class Alien inherits Enemigo() {
   const puntos
@@ -74,7 +70,8 @@ class Jefe inherits Enemigo(vida = 50 * nivel, danio = 50 * nivel) {
       eventos.muerteJefe()
     }
 
-override method desaparecer() {
+  override method desaparecer(){
+    
   }
 
   method disparar() {
@@ -151,6 +148,5 @@ class Enemigo{
   
   method config(){
     game.addVisual(self)
-    //self.confColisiones()
   }
 }

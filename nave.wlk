@@ -24,10 +24,11 @@ object nave {
     vida = 100
     vidaNave.actualizarVida(vida)
     self.confColisiones()
+    self.confColisiones()
   }
 
   method cambiarImagen(){
-    image = "naveEtapa" + nivel +".png"
+    image = "navEtapa" + nivel +".png"
   }
 
   method disparar() {
@@ -74,12 +75,13 @@ class Tiro {
 
   method bajar(){
     position.goDown(1)
-    self.fueraTablero(0)
+    self.fueraTablero(1)
   }
 
   method fueraTablero(n) {
     if (position.y() == n)  
-      self.desaparecer()
+      {self.desaparecer()
+      self.detenerMovimiento()}
   }
 
   method confColisiones(){
@@ -108,11 +110,11 @@ class Tiro {
     })
   }
 
-  method detenerMovimientoBajada() {
+  method detenerMovimiento() {
     moviendo = false
     if (estado == 1)
-    game.removeTickEvent("balaSubida" + id)
+    {game.removeTickEvent("balaSubida" + id)}
     else if (estado == -1)
-    game.removeTickEvent("balaBajada" + id)
+    {game.removeTickEvent("balaBajada" + id)}
   }
 }
