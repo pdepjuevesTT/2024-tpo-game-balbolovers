@@ -1,0 +1,48 @@
+import wollok.game.*
+import objetos.*
+import colores.*
+import pantallas.*
+import eventos.*
+import aliens.*
+import nave.*
+
+/*
+object pantallaInicio {
+    method iniciar()
+
+    method image 
+}
+*/
+
+object pantallaInicio {
+    var visible = true
+    method image() = "Wcomenzar.png"
+    var property position = game.center().up(9).right(3)
+    
+    method parpadear() {
+    if (visible) game.removeVisual(self)
+    else game.addVisual(self)
+    visible = !visible
+}
+}
+
+program inicio {
+
+    game.width(25) 
+    game.height(25)
+    game.cellSize(60)
+	game.title("PdeP Invaders")
+	game.boardGround("space.png")
+    
+    game.addVisual(tituloSpace)
+    game.addVisual(pantallaInicio)
+    game.onTick(500, "parpadeoInicio", { pantallaInicio.parpadear() })
+    keyboard.w().onPressDo({ eventos.reiniciar() })
+
+    game.start()
+}
+
+//herencia y polimorfismo
+//pantallade inicio
+//problemas con ganar y perder
+// objetos en eventos con jefe, muerte y rondas
