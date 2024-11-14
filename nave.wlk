@@ -24,7 +24,6 @@ object nave {
     vida = 100
     vidaNave.actualizarVida(vida)
     self.confColisiones()
-    self.confColisiones()
   }
 
   method cambiarImagen(){
@@ -55,9 +54,10 @@ object nave {
     vidaNave.actualizarVida(vida)
   }
 
-  method confColisiones(){
-      game.onCollideDo(self, {alien => alien.perderVida(poder) self.perderVida(20) })
+method confColisiones(){
+    game.onCollideDo(self, {alien => alien.perderVida(poder) self.perderVida(20)})
   }
+
 }
 
 class Tiro {
